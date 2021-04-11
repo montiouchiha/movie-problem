@@ -1,0 +1,54 @@
+import sys
+
+movie_list = ["The Shining", "Your Name", "Fate/Stay Night: Heaven's Feel - III. Spring Song", "The Night Is Short", "Walk on Girl", "The Truman Show", "Genocidal Organ", "Jacob's Ladder", "Parasite", "The Dark Knight", "Blade Runner 2049", "The Mist", "Demon Slayer: Mugen Train", "The Matrix", "Inception", "Shutter Island", "Soul", "Mrs. Brown", "Peppa Pig: Festival of Fun", "Titanic"]
+movie_list_upper = [x.upper() for x in movie_list]
+movie_list_lower = [x.lower() for x in movie_list]
+movie_list.extend(movie_list_upper)
+movie_list.extend(movie_list_lower)
+
+room1_list = movie_list[0:5]
+room1_list.extend(movie_list[19:24])
+room1_list.extend(movie_list[38:43])
+room2_list = movie_list[6:11]
+room2_list.extend(movie_list[25:30])
+room2_list.extend(movie_list[44:49])
+room3_list = movie_list[12:18]
+room3_list.extend(movie_list[31:37])
+room3_list.extend(movie_list[50:56])
+
+while True:
+    group_input1 = str(input("What is the name of the movie you want to watch? "))
+    if group_input1 in movie_list:
+        while True:
+            persons_input = int(input("How many persons will you like to book for? "))
+            if persons_input <=1:
+                persons_input2 = input("Sorry, you must have at least two customers for a group booking. Enter Y to try again or N to quit.")
+                if persons_input2 == 'N' or persons_input2 == 'n':
+                    sys.exit()
+                elif persons_input2 == 'Y' or persons_input2 == 'y':
+                    print()
+            else:
+                if group_input1 in room1_list:
+                    room=18
+                    continue
+                elif group_input in room2_list:
+                    room=68
+                    continue
+                elif group_input in room3_list:
+                    room=21
+                    continue   
+                if persons_input > room:
+                    persons_input3 = input("Sorry, we do not have enough space to hold " +persons_input+ " people in the theater room of " +room+ " seats. Enter Y to try a different movie name or N to quit.")
+                    if persons_input3 == 'N' or persons_input3 == 'n':
+                        sys.exit()
+                    elif persons_input3 == 'Y' or persons_input3 == 'y':
+                        print()
+                else:
+                    input("For person 1, would you like to order popcorn? Y/N")
+                    sys.exit()
+    else:
+        group_input2 = str(input("Sorry, we could not find that movie. Enter Y to try again or N to quit. "))
+        if group_input2 == 'N' or group_input2 == 'n':
+            sys.exit()
+        elif group_input2 == 'Y' or group_input2 == 'y':
+            print()
